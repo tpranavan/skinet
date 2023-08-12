@@ -10,33 +10,31 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    [ApiController] //marking controller class
-    [Route("api/[controller]")]
-    //[controller] will replaced controller which we define below
-    public class ProductsController : ControllerBase
-    //inheritng .Net.Core.MVC     
-    // http://localhost:5001/api/products
+    [Route("[controller]")]
+    public class Products : Controller
     {
-        private readonly StoreContext _context;
-        public ProductsController(StoreContext context)
+        private readonly StoreContext _storeContext;
+        public Products(StoreContext storeContext)
         {
-            _context = context;
-
+            _storeContext = storeContext;
         }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Product>> GetProducts(int id)
+        {
+            return await _storeContext.Products.FindAsync(id);
+        }
+
 
         [HttpGet]
-        public async Task<ActionResult<List<Product>>> GetProducts()
+
+        public ActionResult<List<Product>> GetProduct()
         {
-            var products = await _context.Products.ToListAsync();
+            var products = _storeContext.Products.ToList();
             return Ok(products);
-        }
-        [HttpGet("{id}")]
-        public string GetProduct(int id)
-        {
-            return "Single product";
-        }
+           }
+    }
 
 
 
     }
-}

@@ -20,6 +20,11 @@ namespace Infrastructure.Data
 
         //DbSet is an Entity Framework Core feature that represents a table or a collection in the database.
         public DbSet<Product> Products { get; set; }
+
+        public Microsoft.AspNetCore.Mvc.ActionResult<Product> FindAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
         //Product is a entity class Product.cs
 
     }
