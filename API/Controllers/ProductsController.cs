@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using API.Data;
 using Core.Entities;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -32,9 +31,27 @@ namespace API.Controllers
         {
             var products = _storeContext.Products.ToList();
             return Ok(products);
-           }
-    }
+        }
+
+        [HttpPost]
+        public ActionResult<IEnumerable<Product>> CreateProducts([FromBody] List<Product> products)
+        {
+            if (products == null || products.Count == 0)
+            {
+                return BadRequest("Product data is null or empty.");
+            }
+
+            // Add the products to your data store (_storeContext)
+            _storeContext.Products.AddRange(products);
+            _storeContext.SaveChanges();
+
+            return CreatedAtAction("GetProduct", products); // Returning the list of created products
+        }
 
 
 
     }
+
+
+
+}

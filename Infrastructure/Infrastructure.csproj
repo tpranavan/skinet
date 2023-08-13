@@ -2,8 +2,13 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <ProjectReference Include="..\Core\Core.csproj" />
      <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.3" />
+     
   </ItemGroup>
 
   <PropertyGroup>
