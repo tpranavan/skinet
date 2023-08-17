@@ -47,7 +47,7 @@ namespace API.Controllers
 
             return CreatedAtAction("GetProduct", products); // Returning the list of created products
         }
-<<<<<<< HEAD
+
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteProduct(int id)
@@ -64,8 +64,8 @@ namespace API.Controllers
 
             return Ok("Deleted");
         }
-=======
->>>>>>> Feature/main
+
+
 
 
 
