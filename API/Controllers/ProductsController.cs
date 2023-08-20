@@ -15,7 +15,7 @@ namespace API.Controllers
     {
 
         private readonly StoreContext _storeContext;
-        public IProductRepository _repo { get; }
+        public readonly IProductRepository _repo;
         public ProductsController(StoreContext storeContext, IProductRepository repo)
         {
             _storeContext = storeContext;
@@ -25,7 +25,7 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Product>>> GetProducts()
         {
-            
+
             return Ok(await _repo.GetProductsAsync());
         }
 
